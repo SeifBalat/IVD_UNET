@@ -1,0 +1,13 @@
+nibabel  
+pynrrd
+matplotlib
+tensorflow
+seaborn
+numpy
+pandas
+SimpleITK
+CV2
+PIL
+skimage OR Scikit-image
+keras
+tqdm
