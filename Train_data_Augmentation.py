@@ -7,7 +7,9 @@ import random
 from skimage import img_as_ubyte
 import os
 from skimage.util import random_noise
-#Lets define functions for each operation
+
+
+#define functions for each operation
 def anticlockwise_rotation(image):
     angle= random.randint(0,180)
     return rotate(image, angle)
@@ -65,4 +67,3 @@ while i<=images_to_generate:
     transformed_image=cv2.cvtColor(transformed_image, cv2.COLOR_BGR2RGB) #convert image to RGB before saving it
     cv2.imwrite(new_image_path, transformed_image) # save transformed image to path
     i =i+1
-#to generate more images, put above 3 statement inside while n<... loop
