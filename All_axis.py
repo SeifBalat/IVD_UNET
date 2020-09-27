@@ -37,7 +37,7 @@ np.random.seed = seed
 
 # Set some parameters
 IMG_WIDTH = 256
-IMG_HEIGHT = 64
+IMG_HEIGHT = 256
 
 IMG_CHANNELS = 3
 
@@ -61,7 +61,7 @@ print('Resizing test images')
 
 for n, id_ in tqdm(enumerate(test_ids), total=len(test_ids)):
 
-    test_path = TEST_PATH + id_ + '/Wat/' +'Sagittal/' 
+    test_path = TEST_PATH + id_ + '/data/' +'Sagittal/' 
     test_images = next(os.walk(test_path))[2]
     
     #how we sort the images by default 
@@ -89,9 +89,9 @@ for n, id_ in tqdm(enumerate(train_ids), total=len(train_ids)):
     train_axial_path_images = TRAIN_PATH + id_ 
     #train_axial_path_masks = TRAIN_PATH + id_ + '/GT/' +'Axial/'
     #train_images is a list     
-    folder_array = ['/Opp/', '/Wat/']
+    folder_array = ['/Data/', '/Aug/']
     for folder in folder_array:
-        axis_array = ['Sagittal', 'Sagittal_Aug', ]
+        axis_array = ['Sagittal', 'Axial', 'Coronal' ]
         for axis in axis_array:
             train_axis_path_inn_images = TRAIN_PATH + id_ + folder +axis+'/'
             train_axis_path_masks = TRAIN_PATH + id_ + '/GT/' +axis+'/'
@@ -152,7 +152,7 @@ plt.show()
 model = get_unet()
 
 callbacks = EarlyStopping(patience=8, monitor='val_loss')
-checkpointer = ModelCheckpoint('C:/Users/sbala/OneDrive/Documents/GitHub/Photos-collector/Model-Upload/Wat_Sagittal_Aug2.h5', verbose=1, save_best_only=True)
+checkpointer = ModelCheckpoint('C:/Users/sbala/OneDrive/Documents/GitHub/Photos-collector/Model-Upload/All_Axis.h5', verbose=1, save_best_only=True)
 #reduce_lr = ReduceLROnPlateau(factor=0.1, patience=5, min_lr=0.00001, verbose=1)
 
 print('*'*40)
