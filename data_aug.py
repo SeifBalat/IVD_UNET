@@ -87,7 +87,7 @@ print('Resizing training images and masks')
 
 for n, id_ in tqdm(enumerate(train_ids), total=len(train_ids)): 
     train_axial_path_images = TRAIN_PATH + id_   
-    folder_array = ['/Opp/', '/Wat/']
+    folder_array = ['/Data/', '/Aug/']
     for folder in folder_array:
         train_axial_path_inn_images = TRAIN_PATH + id_ + folder +'Coronal/'
         train_axial_path_masks = TRAIN_PATH + id_ + '/GT/' +'Coronal/'
@@ -107,7 +107,7 @@ for n, id_ in tqdm(enumerate(train_ids), total=len(train_ids)):
             images = resize(images, (IMG_HEIGHT, IMG_WIDTH), mode='constant', preserve_range=True)
             collective_images = np.maximum(collective_images, images)
             
-            if folder == '/Wat/':
+            if folder == '/Aug/':
                 X_train[n+15] =collective_images
             else:
                 X_train[n] =collective_images
@@ -121,7 +121,7 @@ for n, id_ in tqdm(enumerate(train_ids), total=len(train_ids)):
             
             #mask = resize(mask, (IMG_HEIGHT, IMG_WIDTH), mode='constant', preserve_range=True)
             collective_mask = np.maximum(collective_mask, mask)
-            if folder == '/Wat/':
+            if folder == '/Aug/':
                 Y_train[n+15] =collective_mask
             else:
                 Y_train[n] =collective_mask
@@ -148,7 +148,7 @@ plt.show()
 model = get_unet()
 
 callbacks = EarlyStopping(patience=8, monitor='val_loss')
-checkpointer = ModelCheckpoint('C:/Users/sbala/OneDrive/Documents/GitHub/Photos-collector/Model-Upload/Model_wat_opp_Coronal.h5', verbose=1, save_best_only=True)
+checkpointer = ModelCheckpoint('C:/Users/sbala/OneDrive/Documents/GitHub/Photos-collector/Model-Upload/Model_Aug_Coronal.h5', verbose=1, save_best_only=True)
 #reduce_lr = ReduceLROnPlateau(factor=0.1, patience=5, min_lr=0.00001, verbose=1)
 
 print('*'*40)
